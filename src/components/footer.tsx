@@ -67,7 +67,7 @@ export function Footer() {
           <p className="text-center">
             Created by{' '}
             <a
-              href="https://vjlivetech.com"
+              href="https://github.com/vjlive"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-primary hover:text-primary/80 transition-colors"
