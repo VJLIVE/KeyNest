@@ -4,8 +4,12 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 export function Hero() {
+  const { data: session, status } = useSession();
+  const isAuthenticated = status === 'authenticated';
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -59,18 +63,18 @@ export function Hero() {
         variants={itemVariants}
         className="flex flex-col sm:flex-row items-center justify-center gap-4"
       >
-        <Link href="/dashboard" passHref>
+        <Link href={isAuthenticated ? "/dashboard" : "/signup"} passHref>
           <Button size="lg" className="bg-primary/90 hover:bg-primary text-white w-full sm:w-auto">
             Start Building
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </Link>
         <Link href="#" passHref>
-           <Button size="lg" variant="outline" className="w-full sm:w-auto bg-background/50 border-white/20 hover:bg-white/10 hover:text-white">
+          <Button size="lg" variant="outline" className="w-full sm:w-auto bg-background/50 border-white/20 hover:bg-white/10 hover:text-white">
             View Documentation
           </Button>
         </Link>
       </motion.div>
     </motion.section>
-  )
+  );
 }
