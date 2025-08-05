@@ -1,10 +1,31 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Providers from '@/components/providers/Providers'; // ✅ Import your new client wrapper
+import Providers from '@/components/providers/Providers';
 
 export const metadata: Metadata = {
   title: 'Keynest - Secure API Key Management',
   description: 'Generate, store, and manage API keys with enterprise-grade security. Built for developers who demand both simplicity and robust protection.',
+  openGraph: {
+    title: 'Keynest - Secure API Key Management',
+    description: 'Generate, store, and manage API keys with enterprise-grade security.',
+    url: 'https://key-nest-sigma.vercel.app',
+    siteName: 'Keynest',
+    images: [
+      {
+        url: 'https://key-nest-sigma.vercel.app/logo/PNG.png',
+        width: 1200,
+        height: 630,
+        alt: 'Keynest Logo',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Keynest - Secure API Key Management',
+    description: 'Generate, store, and manage API keys with enterprise-grade security.',
+    images: ['https://key-nest-sigma.vercel.app/logo/PNG.png'],
+  },
 };
 
 export default function RootLayout({
