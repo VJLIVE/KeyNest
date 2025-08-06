@@ -1,4 +1,9 @@
-// src/middleware.ts
+/**
+ * Next.js Middleware for route protection in KeyNest
+ * - Only allows unauthenticated users to access home, login, and signup
+ * - Redirects authenticated users away from login and signup to dashboard
+ * - Redirects unauthenticated users to login for protected routes
+ */
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { getToken } from 'next-auth/jwt';
@@ -6,25 +11,25 @@ import { getToken } from 'next-auth/jwt';
 export async function middleware(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
   const { pathname } = req.nextUrl;
-  const isAuth = !!token;
+  const isAuthenticated = !!token;
 
-  // Public routes
-  const publicRoutes = ['/', '/login', '/signup'];
+  // Define public routes
+  const PUBLIC_ROUTES = ['/', '/login', '/signup'];
 
-  // If authenticated, block access to login and signup
-  if (isAuth && (pathname === '/login' || pathname === '/signup')) {
+  // Redirect authenticated users away from login and signup
+  if (isAuthenticated && ['/login', '/signup'].includes(pathname)) {
     return NextResponse.redirect(new URL('/dashboard', req.url));
   }
 
-  // If not authenticated, block access to any route except publicRoutes
-  if (!isAuth && !publicRoutes.includes(pathname)) {
+  // Redirect unauthenticated users to login for protected routes
+  if (!isAuthenticated && !PUBLIC_ROUTES.includes(pathname)) {
     return NextResponse.redirect(new URL('/login', req.url));
   }
 
   return NextResponse.next();
 }
 
-// Apply middleware to all routes except home, login, signup
+// Matcher config for protected routes
 export const config = {
   matcher: [
     '/((?!_next|favicon.ico|logo|logo.svg|PNG.png|api|public|login|signup).*)',
