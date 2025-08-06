@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { signOut } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import {
@@ -13,10 +15,20 @@ import {
 
 export default function ClientDashboard({ user }: { user: { name: string; email: string; role: string } }) {
   const [showModal, setShowModal] = useState(false);
+  const { status } = useSession();
+  const router = useRouter();
+
+  // Redirect unauthenticated users to login
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.replace('/login');
+    }
+  }, [status, router]);
 
   const handleLogout = async () => {
     setShowModal(false);
-    await signOut({ callbackUrl: '/', redirect: true });
+    await signOut({ callbackUrl: '/', redirect: false });
+    window.location.href = '/'; // Force full reload to clear cache
   };
 
   return (
