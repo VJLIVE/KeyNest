@@ -12,7 +12,7 @@ export default function SignupPage() {
   const [form, setForm] = useState({ name: '', email: '', password: '', role: roles[0] });
   const [error, setError] = useState('');
 
-  // Redirect logged-in users
+  // Redirect authenticated users away from signup
   useEffect(() => {
     if (status === 'authenticated') {
       router.replace('/dashboard');

@@ -11,7 +11,6 @@ export default function LoginPage() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
 
-  // Redirect logged-in users
   useEffect(() => {
     if (status === 'authenticated') {
       router.replace('/dashboard');
