@@ -16,3 +16,6 @@
 - Font pairing: 'Space Grotesk' (sans-serif) for headlines and short labels combined with 'Inter' (sans-serif) for main text.
 - Use a consistent set of minimalist icons related to security, keys, and data protection. Favor a simple, monoline style.
 - Implement a clean, organized layout with a focus on usability. Use a grid system for consistent spacing and alignment.
+
+- Home Screen:
+<img width="1919" height="869" alt="image" src="https://github.com/user-attachments/assets/174cd367-df00-49b0-9544-19e4f8f94d10" />
