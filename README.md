@@ -8,7 +8,7 @@
 - Delete API Key: Enable users to delete API keys securely from their storage.
 - Future Plan(AI-Powered Key Naming): Generate unique and secure names for API keys using an AI tool, if users opt to have one generated for them.
 
-## Style Guidelines:
+## Styling Guidelines:
 
 - Primary color: HSL(220, 65%, 50%) which translates to a deep, secure blue, expressed as #337ab7, to instill confidence and security.
 - Background color: HSL(220, 20%, 95%), or #f2f4f7, to provide a light and non-intrusive backdrop that is easy on the eyes.
